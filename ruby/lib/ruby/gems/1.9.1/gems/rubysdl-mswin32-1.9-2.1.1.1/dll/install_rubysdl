@@ -1,0 +1,14 @@
+#! ruby
+
+require 'rubygems'
+require 'rbconfig'
+require 'fileutils'
+
+ps = Gem::GemPathSearcher.new
+spec = ps.init_gemspecs.select{|sp| sp.name.match(/rubysdl\-mswin32/)}.max_by{|sp| sp.version.to_s}
+full_path = spec.installation_path + "/gems/" + spec.full_name
+
+dlldir = Config::CONFIG["bindir"]
+FileUtils.mkpath(dlldir) 
+
+Dir.glob(full_path+"/dll/*.dll"){|fname| FileUtils.install(fname, dlldir)}
