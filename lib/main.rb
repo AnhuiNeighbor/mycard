@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+#test
 begin
 
   Windows = RUBY_PLATFORM["win"] || RUBY_PLATFORM["ming"]
